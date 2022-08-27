@@ -32,10 +32,25 @@ import Table from "examples/Tables/Table";
 // Data
 import authorsTableData from "layouts/tables/data/authorsTableData";
 import projectsTableData from "layouts/tables/data/projectsTableData";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Tables() {
-  const { columns, rows } = authorsTableData;
+  const [coins, setCoins]=useState([]);
+  const { columns:columns, rows:rows} = authorsTableData;
   const { columns: prCols, rows: prRows } = projectsTableData;
+
+  useEffect(()=>{
+    axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false")
+    .then(res => {
+      setCoins(res.data);
+      // console.log(res.data);
+    }).catch(error => console.log(error));
+  }, []);
+
+const filteredCoins = coins.filter(coin => 
+  coin.name.toLowerCase()
+  );
 
   return (
     <DashboardLayout>
@@ -45,7 +60,7 @@ function Tables() {
           <Card>
             <VuiBox display="flex" justifyContent="space-between" alignItems="center" mb="22px">
               <VuiTypography variant="lg" color="white">
-                Authors table
+                Crypto 
               </VuiTypography>
             </VuiBox>
             <VuiBox
@@ -62,7 +77,11 @@ function Tables() {
                 },
               }}
             >
-              <Table columns={columns} rows={rows} />
+             {filteredCoins.map(coin => {
+             return( 
+              <Table columns={columns} rows={rows} key={coin.id} name={coin.name} price={coin.price} image={coin.image}
+             />
+             )})}
             </VuiBox>
           </Card>
         </VuiBox>

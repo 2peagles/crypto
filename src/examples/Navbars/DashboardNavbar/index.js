@@ -60,12 +60,15 @@ import {
 // Images
 import team2 from "assets/images/team-2.jpg";
 import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
+// import authorsTableData from "layouts/tables/data/authorsTableData";
+// import Tables from "layouts/tables";
 
-function DashboardNavbar({ absolute, light, isMini }) {
+function DashboardNavbar({ absolute, light, isMini}) {
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useVisionUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator } = controller;
   const [openMenu, setOpenMenu] = useState(false);
+  // const[search, setSearch]=useState('');
   const route = useLocation().pathname.split("/").slice(1);
 
   useEffect(() => {
@@ -98,6 +101,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
+  // const handleChange = e => {
+  //   setSearch(e.target.value)
+  // }
+  // const filteredCoins = coins.filter(coin =>
+  //   coin.name.toLowerCase().includes(search.toLowerCase())
+  //   )
 
   // Render the notifications menu
   const renderMenu = () => (
@@ -137,7 +146,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
       />
     </Menu>
   );
-
   return (
     <AppBar
       position={absolute ? "absolute" : navbarType}
@@ -163,7 +171,20 @@ function DashboardNavbar({ absolute, light, isMini }) {
                   },
                   backgroundColor: "info.main !important",
                 })}
+                // onChange={handleChange}
               />
+              {/* {filteredCoins.map(coin => {
+                return(
+                <Tables 
+                  key={coin.id} 
+                  name={coin.name}
+                  image={coin.image} 
+                  symbol={coin.symbol} 
+                  volume={coin.market_cap} 
+                  price={coin.current_price}
+                  />
+                )
+              })} */}
             </VuiBox>
             <VuiBox color={light ? "white" : "inherit"}>
               <Link to="/authentication/sign-in">

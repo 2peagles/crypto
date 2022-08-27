@@ -43,7 +43,7 @@ function OrdersOverview() {
     <Card className="h-100">
       <VuiBox mb="16px">
         <VuiTypography variant="lg" fontWeight="bold" mb="5px" color="white">
-          Orders overview
+          Profile Overview
         </VuiTypography>
         <VuiBox mb={2}>
           <VuiBox display="flex" alignItems="center">
@@ -61,17 +61,17 @@ function OrdersOverview() {
       <VuiBox>
         <TimelineItem
           icon={<FaBell size="16px" color={palette.info.main} />}
-          title="$2400, Design changes"
+          title="Name"
           dateTime="22 DEC 7:20 PM"
         />
         <TimelineItem
           icon={<IoLogoCss3 size="16px" color={palette.error.main} />}
-          title="New order #1832412"
+          title="Email"
           dateTime="21 DEC 11 PM"
         />
         <TimelineItem
           icon={<FaShoppingCart size="16px" color={palette.lightblue.main} />}
-          title="Server payments for April"
+          title="Banking Information"
           dateTime="21 DEC 9:34 PM"
         />
         <TimelineItem
